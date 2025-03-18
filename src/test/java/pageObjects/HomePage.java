@@ -13,12 +13,14 @@ public class HomePage extends BasePage{
          super(driver);
     }
 
-    @FindBy (xpath ="//div[@class='navbar-right hidden-xs']//a[contains(text(),'Register')]")
+    @FindBy (xpath ="//div[@id ='top-links']//a[normalize-space()='Register']")
     private WebElement lnkRegister;
 
-    @FindBy (xpath ="//div[@class='navbar-right hidden-xs']//a[contains(text(),'Login')]")
+    @FindBy (xpath ="//div[@id ='top-links']//a[normalize-space()='Login']")
     private WebElement lnkLogin;
 
+    @FindBy (xpath ="//div[@id ='top-links']//a[normalize-space()='My Account']")
+    private WebElement lnkMyAccount;
 
 
     public void clickOnRegister(){
@@ -26,5 +28,8 @@ public class HomePage extends BasePage{
     }
     public void clickOnLogin(){
         lnkLogin.click();
+    }
+    public void clickOnMyAccount(){
+        lnkMyAccount.click();
     }
 }
