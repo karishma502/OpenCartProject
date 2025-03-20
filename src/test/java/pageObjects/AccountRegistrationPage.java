@@ -38,7 +38,7 @@ public class AccountRegistrationPage extends BasePage {
     @FindBy (xpath = "//input[@type='submit']")
     private WebElement btnSubmit;
 
-    @FindBy (xpath = "//div[@id='content']//child::p[1]")
+    @FindBy (xpath = "//div[@id='content']//child::h1")
     private WebElement confMsg;
 
     public void enterFirstName(String firstName){

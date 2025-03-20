@@ -1,69 +1,51 @@
 package testCases;
 
-import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageObjects.AccountRegistrationPage;
 import pageObjects.HomePage;
 
-import java.time.Duration;
-
-import static org.apache.commons.lang3.RandomStringUtils.random;
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-
-public class AccountRegistrationTest{
-    WebDriver driver;
-    @BeforeClass
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-        driver=new ChromeDriver();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.get("https://tutorialsninja.com/demo/");
-    }
-
-
+public class AccountRegistrationTest extends BestTest {
 
     @Test
     public void verify_Account_Registry() throws InterruptedException {
-        HomePage hp = new HomePage(driver);
-        AccountRegistrationPage ar = new AccountRegistrationPage(driver);
+        logger.info("******* Started AccountRegistrationTest ******");
 
-        hp.clickOnMyAccount();
-        hp.clickOnRegister();
+        try {
+            HomePage hp = new HomePage(driver);
+            AccountRegistrationPage ar = new AccountRegistrationPage(driver);
 
-        //call the functions for the fill the registration form
+            hp.clickOnMyAccount();
+            logger.info("Click on My account");
+            hp.clickOnRegister();
+            logger.info("Click on Register account");
 
-        ar.enterFirstName(randomString().toUpperCase());
-        Thread.sleep(2000);
-        ar.enterLastName(randomString().toUpperCase());
-        ar.enterEmail(randomString()+"@gmail.com");
-        ar.enterTelePhone(randomNumber());
-        ar.enterPass("1234");
-        ar.enterConfirmPass("1234");
-        ar.clickOnPolicyAgree();
-        ar.clickOnContinue();
-       String confmsf= ar.getConfirmationMsg();
+            //call the functions for the fill the registration form
 
-        Assert.assertEquals(confmsf,"Congratulations! Your new account has been successfully created!");
+            ar.enterFirstName(randomString().toUpperCase());
+            Thread.sleep(2000);
+            ar.enterLastName(randomString().toUpperCase());
+            ar.enterEmail(randomString() + "@gmail.com");
+            ar.enterTelePhone(randomNumber());
+            String password = randomAlphaNumber();
+            ar.enterPass(password);
+            ar.enterConfirmPass(password);
+            ar.clickOnPolicyAgree();
+            ar.clickOnContinue();
+            Thread.sleep(2000);
+            String confmsf = ar.getConfirmationMsg();
+            Thread.sleep(2000);
+            Assert.assertEquals(confmsf, "Your Account Has Been Created!");
+        }
+        catch (Exception e){
+            logger.error("Test Case Failed");
+            logger.debug("Logging debug");
+            Assert.fail();
+        }
+
+        logger.info("******* Finished AccountRegistrationTest ******");
     }
 
-    public String randomString(){
-        String generatedString = RandomStringUtils.randomAlphabetic(5);
-        return generatedString;
-    }
-    public String randomNumber(){
-        String generatedNum = RandomStringUtils.randomNumeric(9);
-        return generatedNum;
-    }
-
-    @AfterClass
-    public void tearDown(){
-      //  driver.quit();
-    }
 }
+
 
