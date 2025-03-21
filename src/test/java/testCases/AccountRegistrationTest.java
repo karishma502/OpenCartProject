@@ -25,8 +25,8 @@ public class AccountRegistrationTest extends BestTest {
             ar.enterFirstName(randomString().toUpperCase());
             Thread.sleep(2000);
             ar.enterLastName(randomString().toUpperCase());
-            ar.enterEmail(randomString() + "@gmail.com");
-            ar.enterTelePhone(randomNumber());
+            ar.enterEmail(randomString()+"@gmail.com");
+            ar.enterTelePhone(prop.getProperty("telephone")); //getting value from config.properties file
             String password = randomAlphaNumber();
             ar.enterPass(password);
             ar.enterConfirmPass(password);

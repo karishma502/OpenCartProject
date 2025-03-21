@@ -11,20 +11,39 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class BestTest {
 
    public WebDriver driver;
-   public Logger logger;
+   public Logger logger; //Log4j2
+   public Properties prop; //properties file
+   public FileInputStream fis;
     @BeforeClass
     @Parameters({"browser"})
-    public void setUp(String br){
+    public void setUp(String br) throws IOException {
+
+        //Specifiy the location of property file
+        File src = new File("./src/test/resources/config.properties");
+        //Create a FileinputStram class object to load the file
+        fis = new FileInputStream(src);
+        //Create a properties class object to read properties files
+        prop = new Properties();
+        prop.load(fis);
+
         //LogManager class with getLogger method to get in logger instance
         logger = LogManager.getLogger(this.getClass());
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+
+
         switch (br.toLowerCase()){
-            case "chrome" : driver=new ChromeDriver();
+            case "chrome" :
+                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+                driver=new ChromeDriver();
             break;
             case  "edge" : driver= new EdgeDriver();
             break;
@@ -35,7 +54,7 @@ public class BestTest {
 
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.get("https://tutorialsninja.com/demo/");
+        driver.get(prop.getProperty("url"));
     }
 
 
@@ -55,7 +74,7 @@ public class BestTest {
 
     @AfterClass
     public void tearDown(){
-         //driver.quit();
+         driver.quit();
     }
 }
 
