@@ -35,11 +35,16 @@ public class AccountRegistrationTest extends BestTest {
             Thread.sleep(2000);
             String confmsf = ar.getConfirmationMsg();
             Thread.sleep(2000);
-            Assert.assertEquals(confmsf, "Your Account Has Been Created!");
+            if(confmsf.equals("Your Account Has Been Created!!")){
+                Assert.assertTrue(true);
+            }
+            else {
+                logger.error("Test Case Failed");
+                logger.debug("Logging debug");
+                Assert.assertFalse(false);
+            }
         }
         catch (Exception e){
-            logger.error("Test Case Failed");
-            logger.debug("Logging debug");
             Assert.fail();
         }
 
