@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" thread-count="5" parallel="tests">
+    <test verbose="2" preserve-order="true" name="chromtest">
+
+        <parameter name="browser" value="chrome"/>
+    <classes>
+        <class name="testCases.AccountRegistrationTest">
+        </class>
+    </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="firefoxtest">
+
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="testCases.AccountRegistrationTest">
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="edgetest">
+
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="testCases.AccountRegistrationTest">
+            </class>
+        </classes>
+    </test>
+</suite>
