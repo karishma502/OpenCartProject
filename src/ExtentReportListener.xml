@@ -5,9 +5,11 @@
         <listeners>
             <listener class-name ="Utilities.ExtentReportManager"/>
         </listeners>
+    <parameter name="browser" value="chrome"/>
     <test name="TestGroup">
         <classes>
-            <class name="testCases.AccountRegistrationTest"/>
+            <!--<class name="testCases.TC_001_AccountRegistrationTest"/>-->
+            <class name="testCases.TC__002_LoginTest"/>
         </classes>
     </test>
 </suite>

@@ -39,7 +39,7 @@ public class BestTest {
         //LogManager class with getLogger method to get in logger instance
         logger = LogManager.getLogger(this.getClass());
 
-
+        //Set up browser
         switch (br.toLowerCase()){
             case "chrome" :
                 System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
@@ -74,7 +74,7 @@ public class BestTest {
 
     @AfterClass
     public void tearDown(){
-         driver.quit();
+         //driver.quit();
     }
 }
 

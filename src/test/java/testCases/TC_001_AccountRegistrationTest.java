@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pageObjects.AccountRegistrationPage;
 import pageObjects.HomePage;
 
-public class AccountRegistrationTest extends BestTest {
+public class TC_001_AccountRegistrationTest extends BestTest {
 
     @Test
     public void verify_Account_Registry() throws InterruptedException {
