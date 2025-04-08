@@ -22,6 +22,9 @@ public class HomePage extends BasePage{
     @FindBy (xpath ="//div[@id ='top-links']//a[normalize-space()='My Account']")
     private WebElement lnkMyAccount;
 
+    @FindBy (xpath ="//div[@id ='top-links']//a[normalize-space()='Logout']")
+    private WebElement lnkLogout;
+
 
     public void clickOnRegister(){
         lnkRegister.click();
@@ -32,4 +35,8 @@ public class HomePage extends BasePage{
     public void clickOnMyAccount(){
         lnkMyAccount.click();
     }
+    public void ClickOnLogout(){
+        lnkLogout.click();
+    }
+
 }
