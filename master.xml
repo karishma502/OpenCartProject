@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/karishmakate/OpenCart_EcmmerceWebsite/src/test/java/testCases">
+        <parameter name="browser" value="chrome"/>
+    <classes>
+       <!--<class name="testCases.TC_001_AccountRegistrationTest"/>
+        <class name="testCases.TC__002_LoginTest"/>-->
+        <class name="testCases.TC_003_LoginDDT"/>
+    </classes>
+</test></suite>
