@@ -22,7 +22,7 @@ public class HomePage extends BasePage{
     @FindBy (xpath ="//div[@id ='top-links']//a[normalize-space()='My Account']")
     private WebElement lnkMyAccount;
 
-    @FindBy (xpath ="//div[@id ='top-links']//a[normalize-space()='Logout']")
+    @FindBy (xpath ="//div[@id='account-account']//child::a[text()='Logout']")
     private WebElement lnkLogout;
 
 
