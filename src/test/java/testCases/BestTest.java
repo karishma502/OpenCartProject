@@ -24,7 +24,7 @@ public class BestTest {
    public Logger logger; //Log4j2
    public Properties prop; //properties file
    public FileInputStream fis;
-    @BeforeClass
+    @BeforeClass(groups = {"Sanity","Regression","Master"})
     @Parameters({"browser"})
     public void setUp(String br) throws IOException {
 
@@ -72,7 +72,7 @@ public class BestTest {
         return (generatedNum+generatedNum);
     }
 
-    @AfterClass
+    @AfterClass(groups = {"Sanity","Regression","Master"})
     public void tearDown(){
          //driver.quit();
     }

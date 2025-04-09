@@ -1,14 +1,16 @@
 package testCases;
 
+import Utilities.ExtentReportManager;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 import pageObjects.MyAccountPage;
-
+@Listeners(ExtentReportManager.class)
 public class TC__002_LoginTest extends BestTest{
 
-    @Test
+    @Test(groups = {"Sanity","Master"})
     public void Verify_Login(){
         logger.info("***** Starts the Execution *****");
 

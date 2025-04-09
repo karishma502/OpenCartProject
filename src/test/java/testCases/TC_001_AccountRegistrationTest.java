@@ -7,7 +7,7 @@ import pageObjects.HomePage;
 
 public class TC_001_AccountRegistrationTest extends BestTest {
 
-    @Test
+    @Test(groups = {"Regression","Master"})
     public void verify_Account_Registry() throws InterruptedException {
         logger.info("******* Started AccountRegistrationTest ******");
 
