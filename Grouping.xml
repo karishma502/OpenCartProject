@@ -4,8 +4,8 @@
     <groups>
         <run>
            <include name="Sanity"/>
-           <!-- <include name="Regression"/>
-            <exclude name="Master"/>-->
+         <include name="Regression"/>
+            <!--  <exclude name="Master"/>-->
         </run>
     </groups>
     <listeners>
@@ -13,7 +13,9 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="groupingTest">
         <parameter name="browser" value="chrome"/>
-    <classes>
+        <parameter name="OS" value="MAC"/>
+
+        <classes>
        <class name="testCases.TC_001_AccountRegistrationTest"/>
         <class name="testCases.TC__002_LoginTest"/>
     </classes>

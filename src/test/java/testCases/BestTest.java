@@ -1,8 +1,12 @@
 package testCases;
 
+import Utilities.DataProviders;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -15,12 +19,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 public class BestTest {
 
-   public WebDriver driver;
+   public static WebDriver driver;
    public Logger logger; //Log4j2
    public Properties prop; //properties file
    public FileInputStream fis;
@@ -76,5 +82,24 @@ public class BestTest {
     public void tearDown(){
          //driver.quit();
     }
+
+    // capture screenshot method
+    public String captureScreenshot(String testName) {
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String screenshotName = testName + "-" + timestamp + ".png";
+        String destPath = "screenshots/" + screenshotName;
+
+        File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destination = new File(System.getProperty("user.dir") + "/" + destPath);
+        //destination.getParentFile().mkdirs(); // make dirs if needed
+        try {
+            FileUtils.copyFile(source, destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return destPath; // This is RELATIVE for Extent to read
+    }
+
 }
 
