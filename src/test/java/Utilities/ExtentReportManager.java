@@ -107,31 +107,31 @@ public class ExtentReportManager implements ITestListener {
             e.printStackTrace();
         }
 
-
-        //Send email once execution is done with report
-
-        try {
-            URL url = new URL("file:///"+System.getProperty("user.dir")+"\\reports\\"+repName);
-
-            //Create email msg
-
-            ImageHtmlEmail email = new ImageHtmlEmail();
-            email.setDataSourceResolver(new DataSourceUrlResolver(url));
-            email.setHostName("smtp.googlemail.com");
-            email.setSmtpPort(465);
-            email.setAuthenticator(new DefaultAuthenticator("Your@gmail.com", "password"));
-            email.setSSLOnConnect(true);
-            email.setFrom("karishmakate31@gmail.com"); //Sender
-            email.setSubject("Test Report");
-            email.setMsg("Please find report attached..");
-            email.addTo("karishmakate1998@gmail.com"); // reciever
-            email.attach(url,"extent Report","pls check report");
-            email.send(); //send email.
-
-
-;        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//
+//        //Send email once execution is done with report
+//
+//        try {
+//            URL url = new URL("file:///"+System.getProperty("user.dir")+"\\reports\\"+repName);
+//
+//            //Create email msg
+//
+//            ImageHtmlEmail email = new ImageHtmlEmail();
+//            email.setDataSourceResolver(new DataSourceUrlResolver(url));
+//            email.setHostName("smtp.googlemail.com");
+//            email.setSmtpPort(465);
+//            email.setAuthenticator(new DefaultAuthenticator("Your@gmail.com", "password"));
+//            email.setSSLOnConnect(true);
+//            email.setFrom("karishmakate31@gmail.com"); //Sender
+//            email.setSubject("Test Report");
+//            email.setMsg("Please find report attached..");
+//            email.addTo("karishmakate1998@gmail.com"); // reciever
+//            email.attach(url,"extent Report","pls check report");
+//            email.send(); //send email.
+//
+//
+//;        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
