@@ -25,6 +25,8 @@ public class HomePage extends BasePage{
     @FindBy (xpath ="//div[@id='account-account']//child::a[text()='Logout']")
     private WebElement lnkLogout;
 
+    @FindBy (xpath="//div[@class='collapse navbar-collapse navbar-ex1-collapse']//li[4]//a[contains(text(),'Tablets')]")
+    private WebElement lnkTablets;
 
     public void clickOnRegister(){
         lnkRegister.click();
@@ -38,5 +40,12 @@ public class HomePage extends BasePage{
     public void ClickOnLogout(){
         lnkLogout.click();
     }
+
+    public void clickOnTablets(){
+        lnkTablets.click();
+    }
+
+
+
 
 }

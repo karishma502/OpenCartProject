@@ -4,13 +4,14 @@
     <listeners>
         <listener class-name ="Utilities.ExtentReportManager"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="/Users/karishmakate/OpenCart_EcmmerceWebsite/src/test/java/testCases">
+    <test verbose="2" preserve-order="true" name="MaterItems">
 
         <parameter name="browser" value="chrome"/>
         <parameter name="OS" value="MAC"/>
     <classes>
-       <!--<class name="testCases.TC_001_AccountRegistrationTest"/>-->
-        <class name="testCases.TC__002_LoginTest"/>
+       <!--<class name="testCases.TC_001_AccountRegistrationTest"/>
+        <class name="testCases.TC__002_LoginTest"/>-->
         <!-- <class name="testCases.TC_003_LoginDDT"/>-->
+        <class name="testCases.TC_004_AddItemToCart"/>
     </classes>
 </test></suite>

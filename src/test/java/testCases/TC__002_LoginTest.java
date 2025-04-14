@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 import pageObjects.MyAccountPage;
+import pageObjects.ShoppingCartPage;
+
 @Listeners(ExtentReportManager.class)
 public class TC__002_LoginTest extends BestTest{
 
@@ -35,6 +37,7 @@ public class TC__002_LoginTest extends BestTest{
 
             boolean myHeading = myAccountPage.isMyAccountExist();
             Assert.assertEquals(myHeading, true, "Login Failed!");
+
         }
         catch (Exception e){
             Assert.fail();
