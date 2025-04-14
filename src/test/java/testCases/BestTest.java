@@ -85,20 +85,24 @@ public class BestTest {
 
     // capture screenshot method
     public String captureScreenshot(String testName) {
+
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String screenshotName = testName + "-" + timestamp + ".png";
-        String destPath = "screenshots/" + screenshotName;
+        String destDir = "reports/screenshots"; // Put screenshots inside reports folder
+        String destPath = destDir + File.separator + screenshotName;
 
-        File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File destination = new File(System.getProperty("user.dir") + "/" + destPath);
-        //destination.getParentFile().mkdirs(); // make dirs if needed
+        File destination = new File(System.getProperty("user.dir") + File.separator + destPath);
+
         try {
+            destination.getParentFile().mkdirs();
+            File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(source, destination);
+            System.out.println("Screenshot saved at: " + destination.getAbsolutePath());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Failed to capture screenshot: " + e.getMessage());
         }
 
-        return destPath; // This is RELATIVE for Extent to read
+        return "screenshots/" + screenshotName; // ⬅ Return relative path from report file
     }
 
 }

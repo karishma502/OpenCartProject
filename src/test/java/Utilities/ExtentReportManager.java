@@ -66,6 +66,14 @@ public class ExtentReportManager implements ITestListener {
         test = extent.createTest(result.getMethod().getTestClass().getRealClass().getName());
         test.assignCategory(result.getMethod().getGroups());
         test.log(Status.PASS,"TestCase pass is"+result.getName());
+
+
+        try {
+            String imgPath = new BestTest().captureScreenshot(result.getName());
+            test.pass("Test Passed", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public void onTestFailure(ITestResult result) {
@@ -74,14 +82,12 @@ public class ExtentReportManager implements ITestListener {
         test.log(Status.FAIL,"TestCase Failed is"+result.getName());
         test.log(Status.FAIL,"Root cause: "+result.getThrowable());
 
+
         try {
             String imgPath = new BestTest().captureScreenshot(result.getName());
-            test.fail("Test failed, screenshot attached:")
-                    .addScreenCaptureFromPath(imgPath); // this must be relative
-            //test.addScreenCaptureFromPath(imgPath);
-
-        } catch (Exception e1) {
-            e1.printStackTrace();
+            test.fail("Test Failed", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -97,14 +103,26 @@ public class ExtentReportManager implements ITestListener {
     public void onFinish(ITestContext context) {
         extent.flush();
 
-        //automatically open reports once generate
-        String pathOfExtentReport =System.getProperty("user.dir")+ "\\reports\\" + repName;
-        File file =new File(pathOfExtentReport);
+     //automatically open reports once generate
+
+        String pathOfExtentReport = System.getProperty("user.dir") + File.separator + "reports" + File.separator + repName;
+        File file = new File(pathOfExtentReport);
+
+
+        if (!file.exists()) {
+            System.err.println("Report file not found at: " + pathOfExtentReport);
+            return;
+        }
 
         try {
-            Desktop.getDesktop().browse(file.toURI());
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(file.toURI());
+                System.out.println("Report opened successfully.");
+            } else {
+                System.err.println("Desktop is not supported on this platform.");
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Failed to open report: " + e.getMessage());
         }
 
 //
