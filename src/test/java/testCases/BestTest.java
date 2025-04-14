@@ -102,7 +102,7 @@ public class BestTest {
             System.err.println("Failed to capture screenshot: " + e.getMessage());
         }
 
-        return "screenshots/" + screenshotName; // ⬅ Return relative path from report file
+        return "screenshots/" + screenshotName; // Return relative path from report file
     }
 
 }
