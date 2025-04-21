@@ -54,7 +54,7 @@ public class TC_004_AddItemToCart extends BestTest{
 
 
             boolean errorMsg= shopping.verifyErrormsg();
-            Assert.assertEquals(errorMsg,true,"successfully added to checkout!");
+            Assert.assertEquals(errorMsg,true,"Products marked with *** are not available in the desired quantity or not in stock!");
 
         }catch (Exception e){
         Assert.fail();

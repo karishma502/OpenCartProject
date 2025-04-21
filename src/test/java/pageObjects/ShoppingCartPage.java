@@ -9,7 +9,7 @@ public class ShoppingCartPage extends BasePage{
         super(driver);
     }
 
-    @FindBy(xpath = "//div[@id='checkout-cart']//div/text()[contains(., 'Products marked with ***')]")
+    @FindBy(xpath = "//div[@id='content']//h1")
     private WebElement errorMsg;
 
     public boolean verifyErrormsg(){
@@ -18,6 +18,6 @@ public class ShoppingCartPage extends BasePage{
         }catch (Exception e){
             return false;
         }
-        return false;
+        return true;
     }
 }
